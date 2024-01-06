@@ -3,15 +3,14 @@ import java.util.Scanner;
 public class ElementsMain {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int option = scanner.nextInt();
-        String name = scanner.next();
-        int number = scanner.nextInt();
         int position;
 
-        OperationsElements elements = new OperationsElements(name, number);
+        String name = "";
+        int number = 0;
+        OperationsElements elements = new OperationsElements(name,number);
 
         while (true) {
-            System.out.println("\n\n#**************** Informe a QTD de Elementos da Fila ******************************");
+            System.out.println("\n\n#**************** QTD de Elementos da Fila -> " + elements.getQtd() + "*************");
 
             System.out.println("\n\n#**********************************************************************************");
             System.out.println("\n\n#--------------------------------MENU----------------------------------------------");
@@ -23,8 +22,8 @@ public class ElementsMain {
             System.out.println("############# 5 - Inserir elemento na fila em determinada posicao #####################");
             System.out.println("############# 6 - Remover elemento da fila  em determinada posicao ####################");
             System.out.println("############# 7 - Sair do programa ####################################################");
-            System.out.println("\n\n#----------------------------------------------------------------------------------");
-
+            System.out.println("\n#----------------------------------------------------------------------------------");
+            int option = scanner.nextInt();
             switch (option) {
                 case 1:
                     if (elements.insertElement(elements.createElement())) {
@@ -48,7 +47,7 @@ public class ElementsMain {
 
                 case 3:
                     System.out.println("***** Elementos na fila *****");
-                    elements.showElements(elements);
+                    elements.showElements();
                     break;
 
                 case 4:

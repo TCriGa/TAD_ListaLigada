@@ -2,16 +2,9 @@ import java.util.Scanner;
 
 public class Elements {
 
-    public Elements(String name, int number){
-
+    public Elements(String name, int number) {
         this.name = name;
         this.number = number;
-
-        init = null;
-        last = null;
-        nextElement = null;
-
-
     }
     public String name;
     public int number;
@@ -21,12 +14,12 @@ public class Elements {
     public Elements nextElement;
     public int qtd;
 
-    public String getName() {
-        return name;
+    public int getQtd() {
+        return qtd;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getName() {
+        return name;
     }
 
     public int getNumber() {
@@ -41,17 +34,6 @@ public class Elements {
         return init;
     }
 
-    public void setInit(Elements init) {
-        this.init = init;
-    }
-
-    public Elements getLast() {
-        return last;
-    }
-
-    public void setLast(Elements last) {
-        this.last = last;
-    }
 
     public Elements getNextElement() {
         return nextElement;
@@ -60,15 +42,5 @@ public class Elements {
     public void setNextElement(Elements nextElement) {
         this.nextElement = nextElement;
     }
-
-    public int getQtd() {
-        return qtd;
-    }
-
-    public void setQtd(int qtd) {
-        this.qtd = qtd;
-    }
-
-
 
 }

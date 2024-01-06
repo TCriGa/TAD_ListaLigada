@@ -1,10 +1,10 @@
 import java.util.Scanner;
 
 public class OperationsElements extends Elements {
-    public OperationsElements(String name, int numero) {
-        super(name, numero);
-    }
 
+    public OperationsElements(String name, int number) {
+        super(name, number);
+    }
 
     public boolean isEmpty() {
         return init == null;
@@ -45,13 +45,14 @@ public class OperationsElements extends Elements {
         return aux;
     }
 
-    public void showElements(Elements elements) {
+    public void showElements() {
+        Elements aux = init;
         if (isEmpty()) {
             System.out.println("Lista vazia!!");
         }
-        while (elements.getInit() != null) {
-            System.out.println("Nome: " + elements.getName() + "||" + "Número: " + elements.getNumber());
-            elements = elements.getNextElement();
+        while (aux != null) {
+            System.out.println("Nome: " + aux.getName() + "||" + "Número: " + aux.getNumber());
+            aux = aux.getNextElement();
         }
     }
 
