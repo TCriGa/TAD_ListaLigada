@@ -18,7 +18,7 @@ public class ElementsMain {
             System.out.println("############# Escolha a opção desejada ################################################");
             System.out.println("############# 1 - Inserir elemento no final da fila ###################################");
             System.out.println("############# 2 - Remover elemento no inicio da fila ##################################");
-            System.out.println("############# 3 - informações sobre a fila ############################################");
+            System.out.println("############# 3 - Exibir Informações sobre a fila ######################################");
             System.out.println("############# 4 - Localizar/posição de um elemento na fila ############################");
             System.out.println("############# 5 - Inserir elemento na fila em determinada posicao #####################");
             System.out.println("############# 6 - Remover elemento da fila  em determinada posicao ####################");
