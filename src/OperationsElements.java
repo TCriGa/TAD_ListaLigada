@@ -45,8 +45,8 @@ public class OperationsElements extends Elements {
         return aux;
     }
 
-    public void showElements() {
-        Elements aux = init;
+    public void showElements(Elements aux) {
+
         if (isEmpty()) {
             System.out.println("Lista vazia!!");
         }
@@ -56,34 +56,18 @@ public class OperationsElements extends Elements {
         }
     }
 
-    public Elements getPositionElement(int index) {
-        int position = 0;
-
-        System.out.println("Informe o número do elemento que deseja pesquisar ->");
-
-        int number = new Scanner(System.in).nextInt();
-        Elements element = new Elements(null, number);
-
-        while (element.getInit() != null) {
-            position++;
-            if (element.getNumber() == number) {
-                System.out.println("Elemento encontrado na posição " + position);
-                System.out.println("\n Nome -----> " + element.getName());
-                System.out.println("\n Numero -----> " + element.getNumber());
-            }
-        }
-
-        if (index <= 0 || isEmpty() || index > qtd) {
+    public Elements getPosition(int position) {
+        int positionNow = 1;
+        if (number <= 0 || isEmpty() || number > qtd) {
             return null;
         }
-
-        Elements aux = init;
-        int i = 1;
-        while (i < index) {
-            aux = aux.getNextElement();
-            i++;
+        init = getInit();
+        while(positionNow < position) {
+            init = init.getNextElement();
+            positionNow++;
         }
-        return aux;
+        System.out.println("Elemento: " + init.getName() + " || " + "Número: " + init.getNumber());
+        return init;
     }
 
     public boolean insertElementPosition(Elements element, int position) {
@@ -99,7 +83,7 @@ public class OperationsElements extends Elements {
             insertElement(element);
             return false;
         } else {
-            Elements previousElement = getPositionElement(position - 1);
+            Elements previousElement = getPosition(position - 1);
             element.setNextElement(previousElement.getNextElement());
             previousElement.setNextElement(element);
         }
@@ -114,7 +98,7 @@ public class OperationsElements extends Elements {
         if (position == 1) {
             return removeElement();
         }
-        Elements previousElement = getPositionElement(position - 1);
+        Elements previousElement = getPosition(position - 1);
         Elements element = previousElement.getNextElement();
         previousElement.setNextElement(element.getNextElement());
         element.setNextElement(null);

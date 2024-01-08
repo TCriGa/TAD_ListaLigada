@@ -10,6 +10,7 @@ public class ElementsMain {
         OperationsElements elements = new OperationsElements(name,number);
 
         while (true) {
+            assert elements != null;
             System.out.println("\n\n#**************** QTD de Elementos da Fila -> " + elements.getQtd() + "*************");
 
             System.out.println("\n\n#**********************************************************************************");
@@ -47,16 +48,30 @@ public class ElementsMain {
 
                 case 3:
                     System.out.println("***** Elementos na fila *****");
-                    elements.showElements();
+                    elements.showElements(elements);
                     break;
 
                 case 4:
+                   int numberElement;
+                    if(elements.isEmpty()){
+                        System.out.println("Lista está vazia!!");
+                        continue;
+                    }
+                    System.out.println("Informe o número do elemento que deseja pesquisar ->");
                     try {
-                        int numberElement = scanner.nextInt();
-                        elements.getPositionElement(numberElement);
+                        numberElement = scanner.nextInt();
                     } catch (Exception e) {
                         System.out.println("Informe um número válido");
                         continue;
+                    }
+                    position = 0;
+                    while(elements != null){
+                        position++;
+                        if(elements.getNumber() == numberElement){
+                            System.out.println("Localizado elemento na posicao " + position);
+                            elements.showElements(elements);
+                        }
+                        elements = (OperationsElements) elements.getNextElement();
                     }
                     break;
 
