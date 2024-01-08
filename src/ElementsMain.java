@@ -5,13 +5,10 @@ public class ElementsMain {
         Scanner scanner = new Scanner(System.in);
         int position;
 
-        String name = "";
-        int number = 0;
-        OperationsElements elements = new OperationsElements(name,number);
+        LinkedList linkedList = new LinkedList();
 
         while (true) {
-            assert elements != null;
-            System.out.println("\n\n#**************** QTD de Elementos da Fila -> " + elements.getQtd() + "*************");
+            System.out.println("\n\n#**************** QTD de Elementos da Fila -> " + linkedList.getQtd() + "*************");
 
             System.out.println("\n\n#**********************************************************************************");
             System.out.println("\n\n#--------------------------------MENU----------------------------------------------");
@@ -26,8 +23,9 @@ public class ElementsMain {
             System.out.println("\n#----------------------------------------------------------------------------------");
             int option = scanner.nextInt();
             switch (option) {
+
                 case 1:
-                    if (elements.insertElement(elements.createElement())) {
+                    if (linkedList.insertElement(linkedList.createElement())) {
                         System.out.println("Elemento inserido com sucesso");
                     } else {
                         System.out.println("*** Falha na inserção do elemento ***");
@@ -35,11 +33,9 @@ public class ElementsMain {
                     break;
 
                 case 2:
-                    if (elements.getInit() != null) {
-                        elements.removeElement();
+                    if (linkedList.getInit() != null) {
+                        linkedList.removeElement();
                         System.out.println("Elemento removido com sucesso");
-                        System.out.println("\n Nome -----> " + elements.getName());
-                        System.out.println("\n Numero -----> " + elements.getNumber());
 
                     } else {
                         System.out.println("Lista está vazia!!");
@@ -48,12 +44,21 @@ public class ElementsMain {
 
                 case 3:
                     System.out.println("***** Elementos na fila *****");
-                    elements.showElements(elements);
+                    Elements elements = linkedList.getInit();
+                    if (linkedList.isEmpty()) {
+                        System.out.println("Lista vazia!!");
+                    } else {
+                        while (elements != null) {
+                            System.out.println("Nome: " + elements.getName() + "||" + "Número: " + elements.getNumber());
+                            elements = elements.getNextElement();
+                        }
+                    }
                     break;
 
                 case 4:
-                   int numberElement;
-                    if(elements.isEmpty()){
+                    int numberElement;
+
+                    if (linkedList.isEmpty()) {
                         System.out.println("Lista está vazia!!");
                         continue;
                     }
@@ -64,19 +69,21 @@ public class ElementsMain {
                         System.out.println("Informe um número válido");
                         continue;
                     }
+                    Elements el = linkedList.getInit();
+
                     position = 0;
-                    while(elements != null){
+                    while (el != null) {
                         position++;
-                        if(elements.getNumber() == numberElement){
+                        if (el.getNumber() == numberElement) {
                             System.out.println("Localizado elemento na posicao " + position);
-                            elements.showElements(elements);
+                            System.out.println("Nome: " + el.getName() + "||" + "Número: " + el.getNumber());
                         }
-                        elements = (OperationsElements) elements.getNextElement();
+                        el = el.getNextElement();
                     }
                     break;
 
                 case 5:
-                    System.out.println("Quantidade de posissões possivéis é = " + elements.qtd + 1);
+                    System.out.println("Quantidade de posissões possivéis é = " + linkedList.qtd + 1);
                     System.out.println();
                     System.out.println("Informe a posição que deseja inserir o elemento -> ");
                     try {
@@ -85,11 +92,11 @@ public class ElementsMain {
                         System.out.println("Informe um número válido");
                         continue;
                     }
-                    if (position > elements.qtd + 1) {
+                    if (position > linkedList.qtd + 1) {
                         System.out.println("Posição inválida");
                         continue;
                     }
-                    if (elements.insertElementPosition(elements.createElement(), position)) {
+                    if (linkedList.insertElementPosition(linkedList.createElement(), position)) {
                         System.out.println("Elemento incluído com sucesso!!");
                     } else {
                         System.out.println("*** Falha na inserção do elemento ***");
@@ -97,7 +104,7 @@ public class ElementsMain {
                     break;
 
                 case 6:
-                    System.out.println("Quantidade de posissões possivéis é = " + elements.qtd + 1);
+                    System.out.println("Quantidade de posissões possivéis é = " + linkedList.qtd + 1);
                     System.out.println();
                     System.out.println("Informe a posição do elemento a ser removido -> ");
                     try {
@@ -106,11 +113,11 @@ public class ElementsMain {
                         System.out.println("Informe um número válido");
                         continue;
                     }
-                    if (position > elements.qtd + 1) {
+                    if (position > linkedList.qtd + 1) {
                         System.out.println("Posição inválida");
                         continue;
                     } else {
-                        elements.removeElementPosition(position);
+                        linkedList.removeElementPosition(position);
                         System.out.println("Elemento removido com sucesso!!");
                     }
                     break;

@@ -1,10 +1,18 @@
 import java.util.Scanner;
 
-public class OperationsElements extends Elements {
+public class LinkedList {
+    public Elements init;
+    public Elements last;
+    public int qtd;
 
-    public OperationsElements(String name, int number) {
-        super(name, number);
+    public Elements getInit() {
+        return init;
     }
+
+    public int getQtd() {
+        return qtd;
+    }
+
 
     public boolean isEmpty() {
         return init == null;
@@ -45,29 +53,20 @@ public class OperationsElements extends Elements {
         return aux;
     }
 
-    public void showElements(Elements aux) {
 
-        if (isEmpty()) {
-            System.out.println("Lista vazia!!");
-        }
-        while (aux != null) {
-            System.out.println("Nome: " + aux.getName() + "||" + "Número: " + aux.getNumber());
-            aux = aux.getNextElement();
-        }
-    }
-
-    public Elements getPosition(int position) {
+    public Elements getPositionElement(int positionAnt) {
         int positionNow = 1;
-        if (number <= 0 || isEmpty() || number > qtd) {
+
+        if (positionAnt <= 0 || isEmpty() || positionNow > qtd) {
             return null;
         }
-        init = getInit();
-        while(positionNow < position) {
-            init = init.getNextElement();
+
+        Elements aux = init;
+        while (positionNow < positionAnt) {
+            aux = aux.getNextElement();
             positionNow++;
         }
-        System.out.println("Elemento: " + init.getName() + " || " + "Número: " + init.getNumber());
-        return init;
+        return aux;
     }
 
     public boolean insertElementPosition(Elements element, int position) {
@@ -83,7 +82,7 @@ public class OperationsElements extends Elements {
             insertElement(element);
             return false;
         } else {
-            Elements previousElement = getPosition(position - 1);
+            Elements previousElement = getPositionElement(position - 1);
             element.setNextElement(previousElement.getNextElement());
             previousElement.setNextElement(element);
         }
@@ -98,7 +97,7 @@ public class OperationsElements extends Elements {
         if (position == 1) {
             return removeElement();
         }
-        Elements previousElement = getPosition(position - 1);
+        Elements previousElement = getPositionElement(position - 1);
         Elements element = previousElement.getNextElement();
         previousElement.setNextElement(element.getNextElement());
         element.setNextElement(null);
@@ -109,9 +108,9 @@ public class OperationsElements extends Elements {
     public Elements createElement() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Informe o nome do elemento: ");
-        name = scanner.next();
+        String name = scanner.next();
         System.out.println("Informe o numero do elemento: ");
-        number = scanner.nextInt();
+        int number = scanner.nextInt();
         return new Elements(name, number);
 
     }
